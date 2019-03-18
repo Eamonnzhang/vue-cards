@@ -1,0 +1,76 @@
+{
+  "name": "vue-cards",
+  "version": "0.1.0",
+  "main": "lib/vue-cards.common.js",
+  "style": "lib/theme-chalk/index.h5.css",
+  "scripts": {
+    "init": "npm install commitizen -g && commitizen init cz-conventional-changelog --save-dev --save-exact && npm run bootstrap",
+    "bootstrap": "npm install && cd ./packages/theme-chalk && npm install",
+    "dev": "npm run build:entry && vue-cli-service serve",
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name vue-cards --dest lib packages/index.js",
+    "clean": "rimraf lib && rimraf packages/*/lib",
+    "dev:style": "gulp --gulpfile packages/theme-chalk/gulpfile.js",
+    "build:docs": "vue-cli-service build",
+    "build:entry": "node build/build-entry.js ",
+    "build:lib": "node build/build-lib.js ",
+    "build:style": "gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
+    "publish:docs": "node build/publish-docs.js",
+    "release": "sh build/release.sh"
+  },
+  "dependencies": {
+    "vue": "^2.5.22",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "commitizen": "^3.0.7",
+    "cp-cli": "^2.0.0",
+    "cssnano": "^4.1.10",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "fs-extra": "^7.0.1",
+    "gh-pages": "^2.0.1",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "highlight.js": "^9.14.2",
+    "lint-staged": "^8.1.0",
+    "markdown-it-container": "^2.0.0",
+    "markdown-it-decorate": "^1.2.2",
+    "markdown-it-task-checkbox": "^1.0.6",
+    "node-sass": "^4.9.0",
+    "postcss-preset-env": "^6.5.0",
+    "postcss-px-to-viewport": "^1.1.0",
+    "postcss-px2units": "^0.2.0",
+    "sass-loader": "^7.1.0",
+    "shelljs": "^0.8.3",
+    "signale": "^1.4.0",
+    "uppercamelcase": "^3.0.0",
+    "vue-markdown-loader": "^2.4.1",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js,!build/*": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

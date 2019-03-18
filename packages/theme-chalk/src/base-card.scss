@@ -1,0 +1,142 @@
+@import "common/var.scss";
+@b vue-cards {
+  padding: 32px;
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+  @when fixed-width {
+    width: 504px;
+  }
+  @e header {
+    border-bottom: 1px dashed $--border-color-base;
+    height: 32px;
+    margin-bottom: 16px;
+    @e label {
+      font-size: $--font-size-small;
+      color: $--color-danger;
+      background-color: $--color-danger-light;
+      height: 48px;
+      line-height: 48px;
+      padding: 0px 16px;
+      text-align: center;
+      border-radius: 0px 0px 8px 8px;
+      position: absolute;
+      top: 0px;
+    }
+  }
+  @e msg-status {
+    position: absolute !important;
+    top: 50%;
+    margin-top: -14px;
+    left: -56px;
+    z-index: 2;
+    @m loading {}
+    @m icon {}
+  }
+  @e read-status {
+    position: absolute !important;
+    right: 0px;
+    bottom: -42px;
+    margin-top: 5px;
+    font-size: $--font-size-small;
+    font-weight: $--font-weight-primary;
+    .is-primary {
+      color: $--color-primary;
+    }
+    .is-plain {
+      color: #B6B8BF;
+    }
+  }
+  @when bg {
+    width: 504px;
+    height: 464px;
+  }
+  @when overflow {
+    padding-right: 0;
+    .vue-cards__footer {
+      padding-right: 32px;
+    }
+    .vue-cards__content__footer {
+      padding-right: 32px;
+    }
+  }
+  @when image {
+    .vue-cards__msg-status--loading {
+      position: absolute !important;
+      top: 50%;
+      margin-top: -14px;
+      left: 50%;
+      margin-left: -16px;
+    }
+  }
+  @m primary {
+    background: $--color-primary;
+    color: $--color-white;
+  }
+  @m default {
+    color: $--color-text-regular;
+    background: $--color-card-grey;
+    color: $--color-text-regular;
+  }
+  @m right {
+    border-radius: $--border-radius-big;
+  }
+  @m left {
+    border-radius: $--border-radius-big;
+  }
+  @e title {
+    font-size: $--font-size-large;
+    font-weight: $--font-weight-bold;
+    line-height: 48px;
+    color: $--color-text-primary;
+    margin-bottom: 24px;
+  }
+  @e content {
+    font-size: $--font-size-base;
+    font-weight: $--font-weight-primary;
+    @e footer {
+      font-size: $--font-size-base;
+    }
+  }
+  @e bg-image {
+    width: 100%;
+    height: 328px;
+    background-size: cover;
+    position: relative;
+    @e button {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+  }
+  @e footer {
+    font-size: $--font-size-base;
+  }
+  @e footer-content {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px dashed $--border-color-base;
+    display: flex;
+    font-size: $--font-size-base;
+    @when center {
+      text-align: center;
+      justify-content: space-between;
+    }
+    @when reverse {
+      justify-content: flex-end;
+    }
+  }
+  @e scroll-part {
+    width: 100%;
+    padding-bottom: 8px;
+    overflow: scroll;
+  }
+  @e row {
+    display: flex;
+    min-width: 2400px;
+    font-size: 0;
+    @m gap {
+      margin: 16px 0 24px 0;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import "common/var.scss";
+[class^="vc-icon-"],
+[class*=" vc-icon-"] {
+  font-family: "iconfont" !important; // font-size: 64px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@b vue-cards-icon {
+  display: inline-block;
+  line-height: 1;
+  @e symbol {
+    position: relative;
+    width: 1em;
+    height: 1em;
+    vertical-align: -.15em;
+    fill: currentColor;
+    overflow: hidden;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  @e font {}
+}
