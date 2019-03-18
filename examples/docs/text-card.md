@@ -24,7 +24,7 @@
 <vue-cards-text
   class="demo-card"
   theme-type="primary"
-  message="这是发送内容"
+  message="这是卡片内容"
 ></vue-cards-text>
 ```
 

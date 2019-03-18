@@ -7,7 +7,7 @@
       </div>
     </vue-cards-base>
     <vue-cards-base class="demo-card" theme-type="primary">
-      <div slot="content">这是发送内容</div>
+      <div slot="content">这是卡片内容</div>
     </vue-cards-base>
   </div>
 </template>
