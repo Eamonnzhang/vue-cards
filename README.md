@@ -2,7 +2,7 @@
 
 ## NPM
 ```
-npm i vue-cards -S
+npm i vue-cards-demo -S
 ```
 
 ## 快速上手
