@@ -1,6 +1,6 @@
 {
   "name": "vue-cards",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "lib/vue-cards.common.js",
   "style": "lib/theme-chalk/index.h5.css",
   "scripts": {
