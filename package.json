@@ -1,8 +1,16 @@
 {
   "name": "vue-cards-demo",
   "version": "0.1.1",
+  "description": "基于Vue的卡片组件",
   "main": "lib/vue-cards.common.js",
   "style": "lib/theme-chalk/index.h5.css",
+  "homepage": "https://github.com/Eamonnzhang/vue-cards",
+  "author":"Eamonnzhang <5eamonn99@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Eamonnzhang/vue-cards.git"
+  },
   "scripts": {
     "init": "npm install commitizen -g && commitizen init cz-conventional-changelog --save-dev --save-exact && npm run bootstrap",
     "bootstrap": "npm install && cd ./packages/theme-chalk && npm install",

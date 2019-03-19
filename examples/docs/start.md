@@ -8,7 +8,7 @@
 <!-- {.md} -->
 
 ```
-npm install vue-cards --save
+npm install vue-cards-demo --save
 ```
 <!-- {.md} -->
 
@@ -16,7 +16,7 @@ npm install vue-cards --save
 <!-- {.md} -->
 
 ```js
-import VueCards from 'vue-cards' // 引入组件库
+import VueCards from 'vue-cards-demo' // 引入组件库
 ```
 <!-- {.md} -->
 
