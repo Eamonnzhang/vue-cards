@@ -1,36 +1,33 @@
 'use strict'
-
-const gulp = require('gulp')
+const { watch, series, src, dest, parallel } = require('gulp')
 const postcss = require('gulp-postcss')
 const sass = require('gulp-sass')
 const cssmin = require('gulp-cssmin')
-// const salad = require('postcss-salad')(require('./salad.config.json'))
-
 const pxtounits = require('postcss-px2units')
 const pxtoviewport = require('postcss-px-to-viewport')
 const cssnano = require('cssnano')
 const presetenv = require('postcss-preset-env')
 const rename = require('gulp-rename')
-
 const tobem = require('postcss-bem-fix')
 
-gulp.task('compile:vw', function() {
-  return gulp
-    .src('./src/*.scss')
+let bemConfig = {
+  shortcuts: {
+    component: 'b',
+    modifier: 'm',
+    descendent: 'e'
+  },
+  separators: {
+    descendent: '__',
+    modifier: '--'
+  }
+}
+
+function compileCssToVw(done) {
+  return src('./src/*.scss')
     .pipe(sass.sync())
     .pipe(
       postcss([
-        tobem({
-          shortcuts: {
-            component: 'b',
-            modifier: 'm',
-            descendent: 'e'
-          },
-          separators: {
-            descendent: '__',
-            modifier: '--'
-          }
-        }),
+        tobem(bemConfig),
         pxtoviewport({
           viewportWidth: 750, // (Number) The width of the viewport.
           viewportHeight: 1334, // (Number) The height of the viewport.
@@ -52,26 +49,15 @@ gulp.task('compile:vw', function() {
     )
     .pipe(cssmin())
     .pipe(rename({ suffix: '.vw' }))
-    .pipe(gulp.dest('./lib'))
-})
+    .pipe(dest('./lib'))
+}
 
-gulp.task('compile:px', function() {
-  return gulp
-    .src('./src/*.scss')
+function compileCssToPx(done) {
+  return src('./src/*.scss')
     .pipe(sass.sync())
     .pipe(
       postcss([
-        tobem({
-          shortcuts: {
-            component: 'b',
-            modifier: 'm',
-            descendent: 'e'
-          },
-          separators: {
-            descendent: '__',
-            modifier: '--'
-          }
-        }),
+        tobem(bemConfig),
         presetenv(),
         pxtounits({
           divisor: 2,
@@ -81,20 +67,25 @@ gulp.task('compile:px', function() {
     )
     .pipe(cssmin())
     .pipe(rename({ suffix: '.px' }))
-    .pipe(gulp.dest('./lib'))
-})
+    .pipe(dest('./lib'))
+}
 
-gulp.task('copyfont', function() {
-  return gulp.src('./src/fonts/**').pipe(gulp.dest('./lib/fonts'))
-})
+function copyFont(done) {
+  return src('./src/fonts/**').pipe(dest('./lib/fonts'))
+}
 
-gulp.task('build', ['compile:vw', 'compile:px', 'copyfont'])
-gulp.task('watch', function() {
-  gulp.watch('./src/*.scss', ['compile:vw', 'compile:px'])
-})
+function watchCss(done) {
+  return watch('./src/*.scss', parallel(compileCssToVw, compileCssToPx))
+}
 
-gulp.task('watch:fonts', function() {
-  gulp.watch('./src/fonts/**', ['copyfont'])
-})
+function watchFonts(done) {
+  return watch('./src/fonts/**', copyFont)
+}
 
-gulp.task('default', ['build', 'watch', 'watch:fonts'])
+exports.build = parallel(compileCssToVw, compileCssToPx, copyFont)
+exports.default = series(
+  compileCssToVw,
+  compileCssToPx,
+  copyFont,
+  parallel(watchCss, watchFonts)
+)
