@@ -16,6 +16,7 @@ import VcChatIcon from '../icon/index.vue'
 export default create({
   name: 'base',
   props: {
+    title: String,
     themeType: {
       type: String,
       default: 'default'

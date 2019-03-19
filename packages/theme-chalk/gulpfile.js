@@ -1,15 +1,18 @@
 'use strict'
 
-var gulp = require('gulp')
-var postcss = require('gulp-postcss')
-var sass = require('gulp-sass')
-var cssmin = require('gulp-cssmin')
-var salad = require('postcss-salad')(require('./salad.config.json'))
-var pxtounits = require('postcss-px2units')
-var pxtoviewport = require('postcss-px-to-viewport')
-var cssnano = require('cssnano')
-var presetenv = require('postcss-preset-env')
-var rename = require('gulp-rename')
+const gulp = require('gulp')
+const postcss = require('gulp-postcss')
+const sass = require('gulp-sass')
+const cssmin = require('gulp-cssmin')
+// const salad = require('postcss-salad')(require('./salad.config.json'))
+
+const pxtounits = require('postcss-px2units')
+const pxtoviewport = require('postcss-px-to-viewport')
+const cssnano = require('cssnano')
+const presetenv = require('postcss-preset-env')
+const rename = require('gulp-rename')
+
+const tobem = require('postcss-bem-fix')
 
 gulp.task('compile:vw', function() {
   return gulp
@@ -17,7 +20,17 @@ gulp.task('compile:vw', function() {
     .pipe(sass.sync())
     .pipe(
       postcss([
-        salad,
+        tobem({
+          shortcuts: {
+            component: 'b',
+            modifier: 'm',
+            descendent: 'e'
+          },
+          separators: {
+            descendent: '__',
+            modifier: '--'
+          }
+        }),
         pxtoviewport({
           viewportWidth: 750, // (Number) The width of the viewport.
           viewportHeight: 1334, // (Number) The height of the viewport.
@@ -48,7 +61,18 @@ gulp.task('compile:px', function() {
     .pipe(sass.sync())
     .pipe(
       postcss([
-        salad,
+        tobem({
+          shortcuts: {
+            component: 'b',
+            modifier: 'm',
+            descendent: 'e'
+          },
+          separators: {
+            descendent: '__',
+            modifier: '--'
+          }
+        }),
+        presetenv(),
         pxtounits({
           divisor: 2,
           targetUnits: 'px'
@@ -61,13 +85,11 @@ gulp.task('compile:px', function() {
 })
 
 gulp.task('copyfont', function() {
-  return gulp
-    .src('./src/fonts/**')
-    .pipe(gulp.dest('./lib/fonts'))
+  return gulp.src('./src/fonts/**').pipe(gulp.dest('./lib/fonts'))
 })
 
 gulp.task('build', ['compile:vw', 'compile:px', 'copyfont'])
-gulp.task('watch', function () {
+gulp.task('watch', function() {
   gulp.watch('./src/*.scss', ['compile:vw', 'compile:px'])
 })
 
@@ -75,4 +97,4 @@ gulp.task('watch:fonts', function() {
   gulp.watch('./src/fonts/**', ['copyfont'])
 })
 
-gulp.task('default', ['build', 'watch','watch:fonts'])
+gulp.task('default', ['build', 'watch', 'watch:fonts'])
