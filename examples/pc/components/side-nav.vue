@@ -52,6 +52,7 @@ export default {
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
+    opacity: 0.8;
   }
   .side-nav-items {
     font-size: 14px;
@@ -81,7 +82,8 @@ export default {
       font-size: 14px;
     }
     .active {
-      color: #2150db;
+      color: #628cf5;
+      font-weight: bold;
     }
   }
 }
