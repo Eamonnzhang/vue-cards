@@ -53,12 +53,6 @@
           "isMobile": "1",
           "name": "base-card",
           "path": "/base-card"
-        },
-        {
-          "desc": "Text 文字卡片",
-          "isMobile": "1",
-          "name": "text-card",
-          "path": "/text-card"
         }
       ]
     }
