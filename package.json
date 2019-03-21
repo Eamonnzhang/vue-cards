@@ -1,6 +1,6 @@
 {
   "name": "vue-cards-demo",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "基于Vue的卡片组件",
   "main": "lib/vue-cards.common.js",
   "style": "lib/theme-chalk/index.h5.css",
