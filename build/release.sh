@@ -26,4 +26,5 @@ then
   git push origin develop
 
   npm publish
+  npm run changelog
 fi
