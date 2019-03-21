@@ -5,7 +5,7 @@ import Button from './button'
 import Icon from './icon'
 import Loading from './loading'
 import TextCard from './text-card'
-const version = '0.1.3'
+const version = '0.1.4'
 const components = [
   BaseCard,
   Button,

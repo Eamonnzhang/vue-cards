@@ -16,6 +16,7 @@ then
 
   # commit
   git tag v$VERSION
+  npm run changelog
   git commit -am "release: $VERSION"
 
   # publish
@@ -26,5 +27,4 @@ then
   git push origin develop
 
   npm publish
-  npm run changelog
 fi
