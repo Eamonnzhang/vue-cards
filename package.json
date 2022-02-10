@@ -50,7 +50,7 @@
     "markdown-it-container": "^2.0.0",
     "markdown-it-decorate": "^1.2.2",
     "markdown-it-task-checkbox": "^1.0.6",
-    "node-sass": "^4.9.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.1.0",
     "shelljs": "^0.8.3",
     "signale": "^1.4.0",
