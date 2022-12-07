@@ -46,7 +46,7 @@
     "fs-extra": "^7.0.1",
     "gh-pages": "^2.0.1",
     "highlight.js": "^9.14.2",
-    "lint-staged": "^8.1.0",
+    "lint-staged": "^13.1.0",
     "markdown-it-container": "^2.0.0",
     "markdown-it-decorate": "^1.2.2",
     "markdown-it-task-checkbox": "^1.0.6",
